@@ -10,7 +10,7 @@ defclr="\033[0m"
 
 if [[ -z $1 ]]
 then
-  echo "
+  echo '
   Description: This script was written to negate the security issues that are present when redirecting 3rd party scripts into bash. It does this by verifying the script using one of two methods to ensure the legitimately of the script before running it. 
   
   Method 1: Github PGP Commit Verification
@@ -30,7 +30,7 @@ then
   - With GitHub Verification: bash <(curl -s https://sjafferali.keybase.pub/verify.sh) "https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh -a"
   - With MD5 Hash Verification: bash <(curl -s https://sjafferali.keybase.pub/verify.sh) "https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh -a" 3e33be38ec154c3f7b717b42bd96b596
   
-  "
+  '
 fi
 
 echo -e "$blue ====== Script Verification ====== $defclr"
