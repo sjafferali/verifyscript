@@ -28,6 +28,7 @@ else
     RESULT="true"
   else
     RESULT="false"
+  fi
 fi
 
 
