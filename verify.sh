@@ -8,7 +8,7 @@ bred="\033[1;31m"
 blue="\033[0;34m"
 defclr="\033[0m"
 
-echo -e "$blue = Script Verification = $defclr"
+echo -e "$blue ====== Script Verification ====== $defclr"
 
 
 
