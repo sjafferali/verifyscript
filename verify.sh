@@ -10,7 +10,7 @@ defclr="\033[0m"
 
 if [[ -z "$1" ]]
 then
-  echo '
+  echo -e '
   '"$yellow"'== Purpose =='"$defclr"'
   This script was written to negate the security issues that are present when redirecting 3rd party scripts into bash. It does this by verifying the script using one of two methods to ensure the legitimately of the script before running it. 
   
