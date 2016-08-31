@@ -20,6 +20,14 @@ then
   VERIFY_URL=$(curl -s https://api.github.com/repos/$REPO/git/refs/heads/$BRANCH | awk -F'"' '/url.*commit/ {print$4}') 
 
   RESULT=$(curl -sH "Accept: application/vnd.github.cryptographer-preview" https://api.github.com/repos/sjafferali/rsi/git/commits/d8fbf275ffb95e9246ef17a2d21b1743d86a19f3 | awk -F" |," '/verified/ {print$6}')
+else
+  echo -e "$blue Using Method: md5sum $defclr"
+  SCRIPTMD5=$(curl -s $(echo $1 | awk '{print$1}') | md5sum)
+  if [[ $SCRIPTMD5 == $2 ]]
+  then
+    RESULT="true"
+  else
+    RESULT="false"
 fi
 
 
