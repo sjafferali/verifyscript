@@ -48,7 +48,7 @@ then
   RESULT=$(curl -sH "Accept: application/vnd.github.cryptographer-preview" $VERIFY_URL | awk -F" |," '/verified/ {print$6}')
 else
   echo -e "$blue Using Method: MD5 Hash $defclr"
-  SCRIPTMD5=$(curl -s $(echo $1 | awk '{print$1}') | md5sum)
+  SCRIPTMD5=$(curl -s $(echo $1 | awk '{print$1}') | md5sum | awk '{print$1}')
   if [[ $SCRIPTMD5 == $2 ]]
   then
     RESULT="true"
@@ -63,7 +63,7 @@ then
   echo -e "$blue ================================== $defclr\n"
   VERIFIED=1 bash <(curl -s $(echo $1 | awk '{print$1}')) $(echo $1 | awk '{print$2" "$3" "$4" "$5" "}')
 else
-  echo -e "$blue Verification: $bred Failed (MD5: $(curl -s $(echo $1 | awk '{print$1}') | md5sum))$blue. Not executing script. $defclr"
+  echo -e "$blue Verification: $bred Failed (MD5: $(curl -s $(echo $1 | awk '{print$1}') | md5sum | awk '{print$1}'))$blue. Not executing script. $defclr"
   echo -e "If you want to run this script anyways, you should wget the script, inspect its contents and execute it manually. Alterantively, you can also specifiy the MD5 hash above in your command"
   echo -e "$blue ================================== $defclr\n"
 fi
