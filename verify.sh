@@ -65,6 +65,6 @@ then
   VERIFIED=1 bash <(curl -s $(echo $1 | awk '{print$1}')) $(echo $1 | awk '{print$2" "$3" "$4" "$5" "}')
 else
   echo -e "$yellow Verification: $bred Failed (MD5: $(curl -s $(echo $1 | awk '{print$1}') | md5sum | awk '{print$1}'))$yellow. Not executing script. $defclr"
-  echo -e "If you want to run this script anyways, you should wget the script, inspect its contents and execute it manually. Alterantively, you can also specifiy the MD5 hash above in your command"
+  echo -e "$cyan Note: If you want to run this script anyways, you should wget the script, inspect its contents and execute it manually. Alterantively, you can also specifiy the MD5 hash above in your command. $defclr"
   echo -e "$yellow ============================================ $defclr\n"
 fi
