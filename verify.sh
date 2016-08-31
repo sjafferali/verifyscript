@@ -31,6 +31,7 @@ then
   - With MD5 Hash Verification: bash <(curl -s https://sjafferali.keybase.pub/verify.sh) "https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh -a" 3e33be38ec154c3f7b717b42bd96b596
   
   '
+  exit 1
 fi
 
 echo -e "$blue ====== Script Verification ====== $defclr"
