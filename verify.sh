@@ -11,21 +11,22 @@ defclr="\033[0m"
 if [[ -z "$1" ]]
 then
   echo '
-  Purpose: This script was written to negate the security issues that are present when redirecting 3rd party scripts into bash. It does this by verifying the script using one of two methods to ensure the legitimately of the script before running it. 
+  '"$yellow"'== Purpose =='"$defclr"'
+  This script was written to negate the security issues that are present when redirecting 3rd party scripts into bash. It does this by verifying the script using one of two methods to ensure the legitimately of the script before running it. 
   
-  == Supported Verification Methods ==
+  '"$yellow"'== Supported Verification Methods =='"$defclr"'
   Method 1: Github PGP Commit Verification
    - This method uses the GitHub API to verify if the commit you are attempting to retrieve is PGP signed.
   
   Method 2: MD5 Hash Verification
    - This method checks the file against the provided MD5 hash that you have personally verified is a legitimate version of the script you are attempting to run.
   
-  == Usage ==
+  '"$yellow"'== Usage =='"$defclr"'
   Syntax: bash <(curl -s https://sjafferali.keybase.pub/verify.sh) "script and arguments" "MD5_HASH"
   - If an MD5 hash is not provided, it will use Github PGP verification instead of MD5 verification. 
   
   
-  == Examples ==
+  '"$yellow"'== Examples =='"$defclr"'
   To run https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh with the -a flag. 
    - Traditionally (without verification): bash <(curl --insecure -s https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh) -a
    - With GitHub Verification: bash <(curl -s https://sjafferali.keybase.pub/verify.sh) "https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh -a"
@@ -35,11 +36,11 @@ then
   exit 1
 fi
 
-echo -e "$blue ====== Script Verification ====== $defclr"
+echo -e "$yellow ====== Script Verification ====== $defclr"
 
 if [[ -z $2 ]]
 then
-  echo -e "$blue Using Method: Github $defclr"
+  echo -e "$yellow Using Method: Github $defclr"
   REPO=$(echo $1 | awk '{print$1}' | awk -F/ '{print$4"/"$5}')
   BRANCH=$(echo $1 | awk '{print$1}' | awk -F/ '{print$6}')
 
@@ -47,7 +48,7 @@ then
 
   RESULT=$(curl -sH "Accept: application/vnd.github.cryptographer-preview" $VERIFY_URL | awk -F" |," '/verified/ {print$6}')
 else
-  echo -e "$blue Using Method: MD5 Hash $defclr"
+  echo -e "$yellow Using Method: MD5 Hash $defclr"
   SCRIPTMD5=$(curl -s $(echo $1 | awk '{print$1}') | md5sum | awk '{print$1}')
   if [[ $SCRIPTMD5 == $2 ]]
   then
@@ -59,11 +60,11 @@ fi
 
 if [[ $RESULT == "true" ]]
 then
-  echo -e "$blue Verification: $green Passed $blue. Executing script. $defclr"
-  echo -e "$blue ================================== $defclr\n"
+  echo -e "$yellow Verification: $yellow Passed$yellow. Executing script. $defclr"
+  echo -e "$yellow ============================================ $defclr\n"
   VERIFIED=1 bash <(curl -s $(echo $1 | awk '{print$1}')) $(echo $1 | awk '{print$2" "$3" "$4" "$5" "}')
 else
-  echo -e "$blue Verification: $bred Failed (MD5: $(curl -s $(echo $1 | awk '{print$1}') | md5sum | awk '{print$1}'))$blue. Not executing script. $defclr"
+  echo -e "$yellow Verification: $bred Failed (MD5: $(curl -s $(echo $1 | awk '{print$1}') | md5sum | awk '{print$1}'))$yellow. Not executing script. $defclr"
   echo -e "If you want to run this script anyways, you should wget the script, inspect its contents and execute it manually. Alterantively, you can also specifiy the MD5 hash above in your command"
-  echo -e "$blue ================================== $defclr\n"
+  echo -e "$yellow ============================================ $defclr\n"
 fi
