@@ -8,7 +8,7 @@ bred="\033[1;31m"
 blue="\033[0;34m"
 defclr="\033[0m"
 
-if [[ -z $1 ]]
+if [[ -z "$1" ]]
 then
   echo '
   Description: This script was written to negate the security issues that are present when redirecting 3rd party scripts into bash. It does this by verifying the script using one of two methods to ensure the legitimately of the script before running it. 
