@@ -1,4 +1,8 @@
 #!/bin/bash
+# 
+# https://github.com/sjafferali/verifyscript
+#
+
 
 purple="\033[35;1m"
 cyan="\033[1;36m"
