@@ -64,7 +64,7 @@ fi
 
 if [[ $RESULT == "true" ]]
 then
-  echo -e "$yellow Verification:$yellow Passed$yellow. Executing script. $defclr"
+  echo -e "$yellow Verification:$green Passed$yellow. Executing script. $defclr"
   echo -e "$yellow ============================================ $defclr\n"
   VERIFIED=1 bash <(curl -s $(echo $1 | awk '{print$1}')) $(echo $1 | awk '{print$2" "$3" "$4" "$5" "}')
 else
