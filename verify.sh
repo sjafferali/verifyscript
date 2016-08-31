@@ -1,5 +1,17 @@
 #!/bin/bash
 
+purple="\033[35;1m"
+cyan="\033[1;36m"
+green="\033[32m"
+yellow="\033[0;33m"
+bred="\033[1;31m"
+blue="\033[0;34m"
+defclr="\033[0m"
+
+echo -e "$blue = Script Verification = $defclr"
+
+
+
 REPO=$(echo $1 | awk '{print$1}' | awk -F/ '{print$4"/"$5}')
 BRANCH=$(echo $1 | awk '{print$1}' | awk -F/ '{print$6}')
 
@@ -9,8 +21,10 @@ RESULT=$(curl -sH "Accept: application/vnd.github.cryptographer-preview" https:/
 
 if [[ $RESULT == "true" ]]
 then
-  echo Verification passed. Executing script.
+  echo -e "$blue Verification: $green Passed $blue. Executing script. $defclr"
+  echo -e "$blue ================================== $defclr"
   bash <(curl -s $(echo $1 | awk '{print$1}')) $(echo $1 | awk '{print$2" "$3" "$4" "$5" "}')
 else
-  echo Verification failed. Not executing script.
+  echo -e "$blue Verification: $bred Failed $blue. Not executing script. $defclr"
+  echo -e "$blue ================================== $defclr"
 fi
