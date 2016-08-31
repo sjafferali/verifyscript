@@ -15,22 +15,22 @@ then
   This script was written to negate the security issues that are present when redirecting 3rd party scripts into bash. It does this by verifying the script using one of two methods to ensure the legitimately of the script before running it. 
   
   '"$yellow"'== Supported Verification Methods =='"$defclr"'
-  Method 1: Github PGP Commit Verification
+  '"$cyan"'Method 1: Github PGP Commit Verification'"$defclr"'
    - This method uses the GitHub API to verify if the commit you are attempting to retrieve is PGP signed.
   
-  Method 2: MD5 Hash Verification
+  '"$cyan"'Method 2: MD5 Hash Verification'"$defclr"'
    - This method checks the file against the provided MD5 hash that you have personally verified is a legitimate version of the script you are attempting to run.
   
   '"$yellow"'== Usage =='"$defclr"'
-  Syntax: bash <(curl -s https://sjafferali.keybase.pub/verify.sh) "script and arguments" "MD5_HASH"
+  '"$cyan"'Syntax: bash <(curl -s https://sjafferali.keybase.pub/verify.sh) "script and arguments" "MD5_HASH"'"$defclr"'
   - If an MD5 hash is not provided, it will use Github PGP verification instead of MD5 verification. 
   
   
   '"$yellow"'== Examples =='"$defclr"'
-  To run https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh with the -a flag. 
-   - Traditionally (without verification): bash <(curl --insecure -s https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh) -a
-   - With GitHub Verification: bash <(curl -s https://sjafferali.keybase.pub/verify.sh) "https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh -a"
-   - With MD5 Hash Verification: bash <(curl -s https://sjafferali.keybase.pub/verify.sh) "https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh -a" 3e33be38ec154c3f7b717b42bd96b596
+  '"$cyan"'To run https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh with the -a flag.'"$defclr"'
+   - '"$purple"'Traditionally (without verification)'"$defclr"': bash <(curl --insecure -s https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh) -a
+   - '"$purple"'With GitHub Verification'"$defclr"': bash <(curl -s https://sjafferali.keybase.pub/verify.sh) "https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh -a"
+   - '"$purple"'With MD5 Hash Verification'"$defclr"': bash <(curl -s https://sjafferali.keybase.pub/verify.sh) "https://raw.githubusercontent.com/sjafferali/rsi/master/rsi.sh -a" 3e33be38ec154c3f7b717b42bd96b596
   
   '
   exit 1
