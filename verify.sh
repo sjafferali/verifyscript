@@ -11,7 +11,7 @@ defclr="\033[0m"
 echo -e "$blue ====== Script Verification ====== $defclr"
 
 
-if [[ ! -z $2 ]]
+if [[ -z $2 ]]
 then
   echo -e "$blue Using Method: github $defclr"
   REPO=$(echo $1 | awk '{print$1}' | awk -F/ '{print$4"/"$5}')
